@@ -78,7 +78,14 @@ const plugins = [
     banner: '// { "framework": ' + (fileType === '.vue' ? '"Vue"' : '"Weex"') + '} \n',
     raw: true,
     exclude: 'Vue'
-  })
+  }),
+   /*
+   * jquery
+   */
+   new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+    })
 ];
 // Config for compile jsbundle for web.
 const webConfig = {

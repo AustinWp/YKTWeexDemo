@@ -2,7 +2,7 @@
     <div class="wrapper">
         <text class="tlt">精选好课</text>
         <div class="cards">
-            <div class="c-courses" v-for="n in Courses"  @click="pushToWeb(n.weburl)">
+            <div class="c-courses" v-for="n in Courses"  @click="logParent()">
                 <image class="c-img" resize="cover" :src="n.imageurl"></image>
                 <text class="c-tit">{{n.coursetitle}}</text>
                 <star class="c-star" :score="n.score"></star>
@@ -83,6 +83,7 @@
     }
 </style>
 <script>
+
     var navigator = weex.requireModule('navigator')
     var openModule = weex.requireModule('open')
     export default {
@@ -107,7 +108,13 @@
                 if(!_url) return;
                 openModule.openURL(_url,function(ret) {   
                     nativeLog(ret);
+                    var par = jQuery.parent(div);
+
                 });
+            },
+
+            logParent () {
+               console.log(jQuery("div.wrapper").parent())
             }
         }
     }
